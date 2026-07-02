@@ -1,0 +1,66 @@
+---
+- name: Configure IOS XR Network Device via NETCONF
+  hosts: iosxr_device
+  gather_facts: false
+  vars_files:
+    - vars.yml
+
+  tasks:
+    - name: Configure banner motd
+      ansible.netcommon.netconf_config:
+        content: |
+          <config>
+            <banners xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-infra-infra-cfg">
+              <banner>
+                <banner-name>motd</banner-name>
+                <banner-text>Welcome to Network Programming Project - Unauthorized Access Prohibited</banner-text>
+              </banner>
+            </banners>
+          </config>
+
+    - name: Configure user account
+      ansible.netcommon.netconf_config:
+        content: |
+          <config>
+            <aaa xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-aaa-lib-cfg">
+              <usernames>
+                <username>
+                  <name>netprog-user</name>
+                  <secret>Netprog123!</secret>
+                </username>
+              </usernames>
+            </aaa>
+          </config>
+
+    - name: Configure interface description
+      ansible.netcommon.netconf_config:
+        content: |
+          <config>
+            <interface-configurations xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-ifmgr-cfg">
+              <interface-configuration>
+                <active>act</active>
+                <interface-name>GigabitEthernet0/0/0/0</interface-name>
+                <description>Configured by Ansible - Network Programming Project</description>
+              </interface-configuration>
+            </interface-configurations>
+          </config>
+
+    - name: Configure IP address on interface
+      ansible.netcommon.netconf_config:
+        content: |
+          <config>
+            <interface-configurations xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-ifmgr-cfg">
+              <interface-configuration>
+                <active>act</active>
+                <interface-name>GigabitEthernet0/0/0/1</interface-name>
+                <ipv4-network xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-io-cfg">
+                  <addresses>
+                    <primary>
+                      <address>192.168.100.1</address>
+                      <netmask>255.255.255.0</netmask>
+                    </primary>
+                  </addresses>
+                </ipv4-network>
+              </interface-configuration>
+            </interface-configurations>
+          </config>
