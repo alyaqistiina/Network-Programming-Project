@@ -69,5 +69,36 @@
             </interface-configurations>
           </config>
 
+    # static route configuration
+    - name: Configure IPv4 static route
+      ansible.netcommon.netconf_edit_config:
+        datastore: candidate
+        content: |
+          <config>
+            <router-static xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-ip-static-cfg">
+              <default-vrf>
+                <address-family>
+                  <vrfipv4>
+                    <vrf-unicast>
+                      <vrf-prefixes>
+                        <vrf-prefix>
+                          <prefix>192.168.200.0</prefix>
+                          <prefix-length>24</prefix-length>
+                          <vrf-route>
+                            <vrf-next-hops>
+                              <vrf-next-hop>
+                                <next-hop-address>10.0.0.2</next-hop-address>
+                              </vrf-next-hop>
+                            </vrf-next-hops>
+                          </vrf-route>
+                        </vrf-prefix>
+                      </vrf-prefixes>
+                    </vrf-unicast>
+                  </vrfipv4>
+                </address-family>
+              </default-vrf>
+            </router-static>
+          </config>
+
     - name: Commit candidate configuration
       ansible.netcommon.netconf_commit:

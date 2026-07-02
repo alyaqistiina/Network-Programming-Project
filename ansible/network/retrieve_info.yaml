@@ -1,0 +1,17 @@
+---
+- name: Retrieve Cisco IOS-XR Device Info via NETCONF
+  hosts: ios_xr
+  gather_facts: false
+
+  tasks:
+    - name: Pull device running interface configurations
+      ansible.netcommon.netconf_get:
+        source: running
+        filter: |
+          <interface-configurations xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-ifmgr-cfg"/>
+      register: xr_device_facts
+
+    - name: Print retrieved device facts
+      debug:
+        var: xr_device_facts.output
+
