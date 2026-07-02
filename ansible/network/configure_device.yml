@@ -1,68 +1,73 @@
 ---
-- name: Configure Cisco IOS-XE Device via NETCONF
-  hosts: ios_xe
+- name: Configure Cisco IOS-XR Device via NETCONF
+  hosts: ios_xr
   gather_facts: no
 
   tasks:
 
     - name: Configure banner login
       ansible.netcommon.netconf_edit_config:
-        datastore: running
+        datastore: candidate
         content: |
           <config>
-            <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+            <banners xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-infra-infra-cfg">
               <banner>
-                <login>
-                  <banner>^ Authorized users only. NetOps Lab - SECR3253 ^</banner>
-                </login>
+                <banner-name>login</banner-name>
+                <banner-text>Authorized users only. NetOps Lab SECR3253</banner-text>
               </banner>
-            </native>
+            </banners>
           </config>
 
     - name: Create local user account
       ansible.netcommon.netconf_edit_config:
-        datastore: running
+        datastore: candidate
         content: |
           <config>
-            <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
-              <username>
-                <name>netopsuser</name>
-                <privilege>15</privilege>
-                <secret>
-                  <encryption>0</encryption>
+            <aaa xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-aaa-lib-cfg">
+              <usernames xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-aaa-locald-cfg">
+                <username>
+                  <ordering-index>0</ordering-index>
+                  <name>netopsuser</name>
                   <secret>NetOps2025!</secret>
-                </secret>
-              </username>
-            </native>
+                </username>
+              </usernames>
+            </aaa>
           </config>
 
     - name: Configure interface description
       ansible.netcommon.netconf_edit_config:
-        datastore: running
+        datastore: candidate
         content: |
           <config>
-            <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
-              <interface>
-                <name>GigabitEthernet2</name>
+            <interface-configurations xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-ifmgr-cfg">
+              <interface-configuration>
+                <active>act</active>
+                <interface-name>GigabitEthernet0/0/0/1</interface-name>
                 <description>Configured by Ansible NETCONF - NetOps Team</description>
-              </interface>
-            </interfaces>
+              </interface-configuration>
+            </interface-configurations>
           </config>
 
     - name: Configure interface IP address
       ansible.netcommon.netconf_edit_config:
-        datastore: running
+        datastore: candidate
         content: |
           <config>
-            <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
-              <interface>
-                <name>GigabitEthernet2</name>
-                <ipv4 xmlns="urn:ietf:params:xml:ns:yang:ietf-ip">
-                  <address>
-                    <ip>192.168.100.1</ip>
-                    <netmask>255.255.255.0</netmask>
-                  </address>
-                </ipv4>
-              </interface>
-            </interfaces>
+            <interface-configurations xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-ifmgr-cfg">
+              <interface-configuration>
+                <active>act</active>
+                <interface-name>GigabitEthernet0/0/0/1</interface-name>
+                <ipv4-network xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-io-cfg">
+                  <addresses>
+                    <primary>
+                      <address>192.168.100.1</address>
+                      <netmask>255.255.255.0</netmask>
+                    </primary>
+                  </addresses>
+                </ipv4-network>
+              </interface-configuration>
+            </interface-configurations>
           </config>
+
+    - name: Commit candidate configuration
+      ansible.netcommon.netconf_commit:
