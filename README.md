@@ -33,13 +33,13 @@ This project is an automation solution that uses **Docker** and **Ansible (with 
                  │                                  │
                  ▼                                  ▼
    ┌───────────────────────────┐      ┌─────────────────────────┐
-   │  Cisco DevNet IOS-XE      │      │  Linux Target Container │
+   │  Cisco DevNet IOS-XR      │      │  Linux Target Container │
    │  Always-On Sandbox        │      │  (Docker container)     │
    └───────────────────────────┘      └─────────────────────────┘
 ```
 
 - The **Ansible control node** runs inside a Docker container with Ansible, `ncclient`, and the `ansible.netcommon` collection installed.
-- **Network configuration tasks** are pushed to a Cisco DevNet Always-On IOS-XE sandbox via NETCONF.
+- **Network configuration tasks** are pushed to a Cisco DevNet Always-On IOS-XR sandbox via NETCONF.
 - **Linux system info tasks** run against one or more Linux target containers over SSH.
 
 ## Repository Structure
@@ -72,7 +72,7 @@ netops-automation-suite/
 
 - Docker & Docker Compose installed
 - Git
-- Access credentials for the Cisco DevNet IOS-XE Always-On Sandbox
+- Access credentials for the Cisco DevNet IOS-XR Always-On Sandbox
   ([https://developer.cisco.com/site/sandbox/](https://developer.cisco.com/site/sandbox/))
 
 ## Setup & Usage
