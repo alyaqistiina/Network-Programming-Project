@@ -1,0 +1,12 @@
+version: "3.3"
+
+services:
+  ansible-control:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ansible-control
+    volumes:
+      - ../ansible:/ansible
+    tty: true
+    stdin_open: true
