@@ -16,25 +16,25 @@ This project is an automation solution that uses **Docker** and **Ansible (with 
 | Alya Qistina binti Awaluddin | A23CS0041 | alyaqistiina | Docker environment |
 | Member 2 | | | Linux system info automation |
 | Member 3 | | | Network config automation (IP, user, banner, interface) |
-| Member 4 | | | Network config automation (static route, device info retrieval) |
+| Ain Najiha Binti Junaidi | A23CS0038 | ainjhaa | Network config automation (static route, device info retrieval) |
 | Member 5 | | | Integration, documentation, testing |
 
 ## Architecture
 
 ```
-                     ┌─────────────────────────┐
+                     ┌───────────────────────────┐
                      │   Ansible Control Node    │
                      │   (Docker container)      │
                      └───────────┬───────────────┘
                                  │
-                 ┌───────────────┴────────────────┐
+                 ┌───────────────┴──────────────────┐
                  │                                  │
       NETCONF over SSH                    Ansible over SSH
                  │                                  │
                  ▼                                  ▼
    ┌───────────────────────────┐      ┌─────────────────────────┐
-   │  Cisco DevNet IOS-XE       │      │  Linux Target Container  │
-   │  Always-On Sandbox         │      │  (Docker container)      │
+   │  Cisco DevNet IOS-XE      │      │  Linux Target Container │
+   │  Always-On Sandbox        │      │  (Docker container)     │
    └───────────────────────────┘      └─────────────────────────┘
 ```
 
