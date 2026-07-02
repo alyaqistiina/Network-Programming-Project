@@ -1,9 +1,9 @@
 all:
   hosts:
-    iosxr_device:
+    ios_xr:
       ansible_host: sandbox-iosxr-1.cisco.com
       ansible_port: 830
-      ansible_user: "{{ netconf_user }}"
-      ansible_password: "{{ netconf_password }}"
-      ansible_connection: ansible.netcommon.netconf
-      ansible_network_os: ansible.netcommon.iosxr
+      ansible_user: azzlkrmn
+      ansible_password: T-gB-2u4OW9JSPpb
+      ansible_connection: netconf
+      ansible_network_os: iosxr

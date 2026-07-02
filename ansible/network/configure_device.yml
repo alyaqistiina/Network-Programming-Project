@@ -1,66 +1,68 @@
 ---
-- name: Configure IOS XR Network Device via NETCONF
-  hosts: iosxr_device
-  gather_facts: false
-  vars_files:
-    - vars.yml
+- name: Configure Cisco IOS-XE Device via NETCONF
+  hosts: ios_xe
+  gather_facts: no
 
   tasks:
-    - name: Configure banner motd
-      ansible.netcommon.netconf_config:
+
+    - name: Configure banner login
+      ansible.netcommon.netconf_edit_config:
+        datastore: running
         content: |
           <config>
-            <banners xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-infra-infra-cfg">
+            <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
               <banner>
-                <banner-name>motd</banner-name>
-                <banner-text>Welcome to Network Programming Project - Unauthorized Access Prohibited</banner-text>
+                <login>
+                  <banner>^ Authorized users only. NetOps Lab - SECR3253 ^</banner>
+                </login>
               </banner>
-            </banners>
+            </native>
           </config>
 
-    - name: Configure user account
-      ansible.netcommon.netconf_config:
+    - name: Create local user account
+      ansible.netcommon.netconf_edit_config:
+        datastore: running
         content: |
           <config>
-            <aaa xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-aaa-lib-cfg">
-              <usernames>
-                <username>
-                  <name>netprog-user</name>
-                  <secret>Netprog123!</secret>
-                </username>
-              </usernames>
-            </aaa>
+            <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+              <username>
+                <name>netopsuser</name>
+                <privilege>15</privilege>
+                <secret>
+                  <encryption>0</encryption>
+                  <secret>NetOps2025!</secret>
+                </secret>
+              </username>
+            </native>
           </config>
 
     - name: Configure interface description
-      ansible.netcommon.netconf_config:
+      ansible.netcommon.netconf_edit_config:
+        datastore: running
         content: |
           <config>
-            <interface-configurations xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-ifmgr-cfg">
-              <interface-configuration>
-                <active>act</active>
-                <interface-name>GigabitEthernet0/0/0/0</interface-name>
-                <description>Configured by Ansible - Network Programming Project</description>
-              </interface-configuration>
-            </interface-configurations>
+            <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+              <interface>
+                <name>GigabitEthernet2</name>
+                <description>Configured by Ansible NETCONF - NetOps Team</description>
+              </interface>
+            </interfaces>
           </config>
 
-    - name: Configure IP address on interface
-      ansible.netcommon.netconf_config:
+    - name: Configure interface IP address
+      ansible.netcommon.netconf_edit_config:
+        datastore: running
         content: |
           <config>
-            <interface-configurations xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-ifmgr-cfg">
-              <interface-configuration>
-                <active>act</active>
-                <interface-name>GigabitEthernet0/0/0/1</interface-name>
-                <ipv4-network xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-io-cfg">
-                  <addresses>
-                    <primary>
-                      <address>192.168.100.1</address>
-                      <netmask>255.255.255.0</netmask>
-                    </primary>
-                  </addresses>
-                </ipv4-network>
-              </interface-configuration>
-            </interface-configurations>
+            <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+              <interface>
+                <name>GigabitEthernet2</name>
+                <ipv4 xmlns="urn:ietf:params:xml:ns:yang:ietf-ip">
+                  <address>
+                    <ip>192.168.100.1</ip>
+                    <netmask>255.255.255.0</netmask>
+                  </address>
+                </ipv4>
+              </interface>
+            </interfaces>
           </config>
