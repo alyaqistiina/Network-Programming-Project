@@ -14,7 +14,7 @@ This project is an automation solution that uses **Docker** and **Ansible (with 
 | Name | Student ID | GitHub Username | Role |
 |---|---|---|---|
 | Alya Qistina binti Awaluddin | A23CS0041 | alyaqistiina | Docker environment |
-| Member 2 | | | Linux system info automation |
+| Tang Jasmine | A23CS0277 | tjasmiine | Linux system info automation |
 | Adriana Zulaikha binti Zulkarman | A23CS0035 | zlaikhaa | Network config automation (IP, user, banner, interface) |
 | Ain Najiha Binti Junaidi | A23CS0038 | ainjhaa | Network config automation (static route, device info retrieval) |
 | Member 5 | | | Integration, documentation, testing |
