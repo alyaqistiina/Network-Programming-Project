@@ -1,12 +1,25 @@
-version: "3.3"
+   version: "3.3"
 
-services:
-  ansible-control:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: ansible-control
-    volumes:
-      - ../ansible:/ansible
-    tty: true
-    stdin_open: true
+   services:
+     ansible-control:
+       build:
+         context: .
+         dockerfile: Dockerfile
+       container_name: ansible-control
+       volumes:
+         - ../ansible:/ansible
+       tty: true
+       stdin_open: true
+       networks:
+         - netops
+
+     linux-target:
+       image: ubuntu:22.04
+       container_name: linux-target
+       command: sleep infinity
+       networks:
+         - netops
+
+   networks:
+     netops:
+       driver: bridge
