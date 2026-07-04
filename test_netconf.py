@@ -15,7 +15,9 @@ try:
         hostkey_verify=False,
         look_for_keys=False,
         allow_agent=False,
-        device_params={'name': 'default'}
+        device_params={'name': 'iosxr'},
+        manager_params={'timeout': 60},
+        ssh_config=None
     )
     print('SUCCESS! Session ID: ' + str(m.session_id))
     m.close_session()

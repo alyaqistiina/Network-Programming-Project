@@ -4,6 +4,6 @@ all:
       ansible_host: sandbox-iosxr-1.cisco.com
       ansible_port: 830
       ansible_user: azzlkrmn
-      ansible_password: T-gB-2u4OW9JSPpb
+      ansible_password: W11O_F4v_ulE
       ansible_connection: netconf
       ansible_network_os: iosxr
