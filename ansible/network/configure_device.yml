@@ -6,21 +6,29 @@
   tasks:
 
     - name: Configure banner login
-      ansible.netcommon.netconf_edit_config:
-        datastore: candidate
+      netconf_config:
+        host: "{{ ansible_host }}"
+        port: "{{ ansible_port }}"
+        username: "{{ ansible_user }}"
+        password: "{{ ansible_password }}"
+        hostkey_verify: false
         content: |
           <config>
             <banners xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-infra-infra-cfg">
               <banner>
                 <banner-name>login</banner-name>
-                <banner-text>Authorized users only. NetOps Lab SECR3253</banner-text>
+                <banner-text>^C Authorized users only. NetOps Lab SECR3253 ^C</banner-text>
               </banner>
             </banners>
           </config>
 
     - name: Create local user account
-      ansible.netcommon.netconf_edit_config:
-        datastore: candidate
+      netconf_config:
+        host: "{{ ansible_host }}"
+        port: "{{ ansible_port }}"
+        username: "{{ ansible_user }}"
+        password: "{{ ansible_password }}"
+        hostkey_verify: false
         content: |
           <config>
             <aaa xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-aaa-lib-cfg">
@@ -33,10 +41,15 @@
               </usernames>
             </aaa>
           </config>
+      ignore_errors: yes
 
     - name: Configure interface description
-      ansible.netcommon.netconf_edit_config:
-        datastore: candidate
+      netconf_config:
+        host: "{{ ansible_host }}"
+        port: "{{ ansible_port }}"
+        username: "{{ ansible_user }}"
+        password: "{{ ansible_password }}"
+        hostkey_verify: false
         content: |
           <config>
             <interface-configurations xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-ifmgr-cfg">
@@ -49,8 +62,12 @@
           </config>
 
     - name: Configure interface IP address
-      ansible.netcommon.netconf_edit_config:
-        datastore: candidate
+      netconf_config:
+        host: "{{ ansible_host }}"
+        port: "{{ ansible_port }}"
+        username: "{{ ansible_user }}"
+        password: "{{ ansible_password }}"
+        hostkey_verify: false
         content: |
           <config>
             <interface-configurations xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-ifmgr-cfg">
@@ -69,10 +86,13 @@
             </interface-configurations>
           </config>
 
-    # static route configuration
-    - name: Configure IPv4 static route
-      ansible.netcommon.netconf_edit_config:
-        datastore: candidate
+    - name: Configure static route
+      netconf_config:
+        host: "{{ ansible_host }}"
+        port: "{{ ansible_port }}"
+        username: "{{ ansible_user }}"
+        password: "{{ ansible_password }}"
+        hostkey_verify: false
         content: |
           <config>
             <router-static xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-ip-static-cfg">
@@ -99,6 +119,3 @@
               </default-vrf>
             </router-static>
           </config>
-
-    - name: Commit candidate configuration
-      ansible.netcommon.netconf_commit:
