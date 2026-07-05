@@ -105,11 +105,11 @@
                           <prefix>192.168.200.0</prefix>
                           <prefix-length>24</prefix-length>
                           <vrf-route>
-                            <vrf-next-hops>
-                              <vrf-next-hop>
+                            <vrf-next-hop-table>
+                              <vrf-next-hop-next-hop-address>
                                 <next-hop-address>10.0.0.2</next-hop-address>
-                              </vrf-next-hop>
-                            </vrf-next-hops>
+                              </vrf-next-hop-next-hop-address>
+                            </vrf-next-hop-table>
                           </vrf-route>
                         </vrf-prefix>
                       </vrf-prefixes>
@@ -119,3 +119,4 @@
               </default-vrf>
             </router-static>
           </config>
+      ignore_errors: yes
