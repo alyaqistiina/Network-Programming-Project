@@ -7,11 +7,6 @@
 
     - name: Configure banner login
       netconf_config:
-        host: "{{ ansible_host }}"
-        port: "{{ ansible_port }}"
-        username: "{{ ansible_user }}"
-        password: "{{ ansible_password }}"
-        hostkey_verify: false
         content: |
           <config>
             <banners xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-infra-infra-cfg">
@@ -24,19 +19,17 @@
 
     - name: Create local user account
       netconf_config:
-        host: "{{ ansible_host }}"
-        port: "{{ ansible_port }}"
-        username: "{{ ansible_user }}"
-        password: "{{ ansible_password }}"
-        hostkey_verify: false
         content: |
           <config>
             <aaa xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-aaa-lib-cfg">
               <usernames xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-aaa-locald-cfg">
                 <username>
-                  <ordering-index>0</ordering-index>
+                  <ordering-index>1</ordering-index>
                   <name>netopsuser</name>
-                  <secret>NetOps2025!</secret>
+                  <secret>
+                    <type>type10</type>
+                    <secret10>$6$r6ovlTj3K1byXT.L$gF38h3srHmYqEhUJfP9jcP3NMM0emwK6tNBOv0uwm5KvKurTXiOqMlGKFccQ1aqe5Hz4cV6OPl0MJLqu75M3R1</secret10>
+                  </secret>
                 </username>
               </usernames>
             </aaa>
@@ -45,11 +38,6 @@
 
     - name: Configure interface description
       netconf_config:
-        host: "{{ ansible_host }}"
-        port: "{{ ansible_port }}"
-        username: "{{ ansible_user }}"
-        password: "{{ ansible_password }}"
-        hostkey_verify: false
         content: |
           <config>
             <interface-configurations xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-ifmgr-cfg">
@@ -63,11 +51,6 @@
 
     - name: Configure interface IP address
       netconf_config:
-        host: "{{ ansible_host }}"
-        port: "{{ ansible_port }}"
-        username: "{{ ansible_user }}"
-        password: "{{ ansible_password }}"
-        hostkey_verify: false
         content: |
           <config>
             <interface-configurations xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-ifmgr-cfg">
@@ -88,11 +71,6 @@
 
     - name: Configure static route
       netconf_config:
-        host: "{{ ansible_host }}"
-        port: "{{ ansible_port }}"
-        username: "{{ ansible_user }}"
-        password: "{{ ansible_password }}"
-        hostkey_verify: false
         content: |
           <config>
             <router-static xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-ip-static-cfg">

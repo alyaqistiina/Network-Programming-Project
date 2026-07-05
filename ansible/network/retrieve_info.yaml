@@ -2,7 +2,6 @@
 - name: Retrieve Cisco IOS-XR Device Info via NETCONF
   hosts: ios_xr
   gather_facts: false
-
   tasks:
     - name: Pull device running interface configurations
       ansible.netcommon.netconf_get:
@@ -13,5 +12,4 @@
 
     - name: Print retrieved device facts
       debug:
-        var: xr_device_facts.output
-
+        var: xr_device_facts.stdout_lines
