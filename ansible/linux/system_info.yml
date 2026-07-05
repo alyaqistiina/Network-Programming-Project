@@ -6,8 +6,13 @@
 
   tasks:
     - name: Get hostname
-      command: uname -a
+      command: hostname
       register: hostname_output
+      changed_when: false
+
+    - name: Get system/kernel info
+      command: uname -a
+      register: uname_output
       changed_when: false
 
     - name: Get current date and time
@@ -43,6 +48,10 @@
     - name: Display hostname
       debug:
         msg: "{{ hostname_output.stdout }}"
+
+    - name: Display system/kernel info
+      debug:
+        msg: "{{ uname_output.stdout }}"
 
     - name: Display current date and time
       debug:

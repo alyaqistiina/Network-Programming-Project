@@ -1,0 +1,8 @@
+all:
+  hosts:
+    linux-target:
+      ansible_host: linux-target
+      ansible_user: root
+      ansible_password: ansible123
+      ansible_connection: ssh
+      ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
