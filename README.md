@@ -80,14 +80,11 @@ netops-automation-suite/
 1. **Clone the repository**
    ```bash
    git clone https://github.com/alyaqistiina/Network-Programming-Project.git
-   cd netops-automation-suite
+   cd Network-Programming-Project
    ```
 
 2. **Configure sandbox credentials**
-   Copy the example environment file and fill in your DevNet sandbox details:
-   ```bash
-   cp .env.example .env
-   ```
+   Update `ansible/network/inventory.yml` with your DevNet sandbox host, port, username, and password.
 
 3. **Build and start the containers**
    ```bash
@@ -97,21 +94,40 @@ netops-automation-suite/
 
 4. **Run the network configuration playbook**
    ```bash
-   docker exec -it ansible-control ansible-playbook ansible/network/configure_device.yml
+   docker exec -it ansible-control ansible-playbook -i /ansible/network/inventory.yml /ansible/network/configure_device.yml
    ```
 
 5. **Retrieve device information**
    ```bash
-   docker exec -it ansible-control ansible-playbook ansible/network/retrieve_info.yml
+   docker exec -it ansible-control ansible-playbook -i /ansible/network/inventory.yml /ansible/network/retrieve_info.yaml
    ```
 
 6. **Collect Linux system information**
    ```bash
-   docker exec -it ansible-control ansible-playbook ansible/linux/system_info.yml
+   docker exec -it ansible-control ansible-playbook -i /ansible/linux/inventory.yml /ansible/linux/system_info.yml
    ```
 
 ## Sample Output
 
+```
+$ docker exec -it ansible-control ansible-playbook -i /ansible/linux/inventory.yml /ansible/linux/system_info.yml
+...
+TASK [Display hostname] ***********************************************
+ok: [linux-target] => {
+    "msg": "afac01e8ec3e"
+}
+
+TASK [Display memory usage] *******************************************
+ok: [linux-target] => {
+    "msg": [
+        "               total        used        free      shared  buff/cache   available",
+        "Mem:           3.8Gi       689Mi       1.8Gi       9.0Mi       1.4Gi       2.9Gi"
+    ]
+}
+...
+PLAY RECAP **************************************************************
+linux-target               : ok=16   changed=0    unreachable=0    failed=0
+```
 
 ## Development Timeline
 
