@@ -1,2 +1,17 @@
+# Sensitive / credentials
 ansible/network/vars.yml
+.env
+.vault_pass
+
+# Python
 get-pip.py
+__pycache__/
+*.pyc
+
+# Ansible
+*.retry
+
+# Editor / swap / temp files
+*.swp
+*.swo
+*~
