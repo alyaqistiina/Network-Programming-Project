@@ -79,7 +79,7 @@ netops-automation-suite/
 
 1. **Clone the repository**
    ```bash
-   git clone <repo-url>
+   git clone https://github.com/alyaqistiina/Network-Programming-Project.git
    cd netops-automation-suite
    ```
 
