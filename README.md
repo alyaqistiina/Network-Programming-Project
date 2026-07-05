@@ -29,7 +29,7 @@ This project is an automation solution that uses **Docker** and **Ansible (with 
                                  │
                  ┌───────────────┴──────────────────┐
                  │                                  │
-      NETCONF over SSH                    Ansible over SSH
+	  NETCONF over SSH                    Ansible over SSH
                  │                                  │
                  ▼                                  ▼
    ┌───────────────────────────┐      ┌─────────────────────────┐
@@ -45,7 +45,7 @@ This project is an automation solution that uses **Docker** and **Ansible (with 
 ## Repository Structure
 
 ```
-netops-automation-suite/
+Network-Programming-Project/
 ├── README.md
 ├── docker/
 │   ├── Dockerfile
@@ -99,7 +99,7 @@ netops-automation-suite/
 
 5. **Retrieve device information**
    ```bash
-   docker exec -it ansible-control ansible-playbook -i /ansible/network/inventory.yml /ansible/network/retrieve_info.yaml
+   docker exec -it ansible-control ansible-playbook -i /ansible/network/inventory.yml /ansible/network/retrieve_info.yml
    ```
 
 6. **Collect Linux system information**
