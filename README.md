@@ -17,7 +17,7 @@ This project is an automation solution that uses **Docker** and **Ansible (with 
 | Tang Jasmine | A23CS0277 | tjasmiine | Linux system info automation |
 | Adriana Zulaikha binti Zulkarman | A23CS0035 | zlaikhaa | Network config automation (IP, user, banner, interface) |
 | Ain Najiha Binti Junaidi | A23CS0038 | ainjhaa | Network config automation (static route, device info retrieval) |
-| Member 5 | | | Integration, documentation, testing |
+| AMR HATEM GABER ZIDAN |A21EC0251 |amr432 | Integration, documentation, testing |
 
 ## Architecture
 
