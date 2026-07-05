@@ -127,4 +127,4 @@ netops-automation-suite/
 ## Deliverables
 
 - [x] GitHub Repository
-- [ ] Personal Reflection Reports (2 pages per member, in `docs/reflections/`)
+- [x] Personal Reflection Reports (2 pages per member, in `docs/reflections/`)
