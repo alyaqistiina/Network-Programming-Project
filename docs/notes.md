@@ -31,8 +31,21 @@ Maintained by M5 (Amr Hatem) - Integration and Documentation
 - SSH handshake failure (Python 3.8 / paramiko vs IOS XR SSH algorithms on labvm).
 - Resolution: tested inside Docker container; configure_device.yml confirmed working.
 
-## 5. Integration Test Log (M5)
-To be filled after running the playbooks.
+## 5. Integration Test Log (M5) - 5 Jul
+- Linux system info (ansible/linux/system_info.yml):
+  PASS. Ran with `ansible-playbook -i localhost, -c local`.
+  All 14 tasks ok, failed=0. Collected hostname, date/time, CPU, memory,
+  disk, logged-in users, top 5 processes. Full output saved in
+  docs/sample_output_linux.txt.
+- Network playbooks (configure_device.yml, retrieve_info.yaml):
+  NOT re-run locally. Building the Docker control node failed on this VM with
+  an OCI seccomp error on syscall clone3 (VM's Docker version does not support
+  clone3). Tried seccomp=unconfined flag, older bullseye base image, and direct
+  docker build - all blocked by the same daemon-level issue. Would need a Docker
+  upgrade on the VM to resolve.
+  Verified instead via commit history: M3 commit "Configure banner, interface
+  description and IP via NETCONF - tested successfully" confirms these ran
+  against the sandbox on the author's environment.
 
 ## 6. Issues Found During Integration
 - [OPEN] .env.example missing but README setup step 2 tells users to copy it.
@@ -41,3 +54,5 @@ To be filled after running the playbooks.
   use .yml. Owner: M4 (Ain) to confirm or rename for consistency.
 - [OPEN] Reflection files: only reflection_member3.md present.
   Owner: M1, M2, M4, M5 each to add their own reflection.
+- [ENV] Docker build blocked by clone3/seccomp on this VM's Docker version.
+  Not a code bug; network playbooks verified via M3's tested commit instead.

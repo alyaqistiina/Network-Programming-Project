@@ -1,0 +1,143 @@
+
+PLAY [Collect Linux system information] ***************************************************************************************************************************************************************************
+
+TASK [Get hostname] ***********************************************************************************************************************************************************************************************
+ok: [localhost]
+
+TASK [Get current date and time] **********************************************************************************************************************************************************************************
+ok: [localhost]
+
+TASK [Get CPU information] ****************************************************************************************************************************************************************************************
+ok: [localhost]
+
+TASK [Get memory usage] *******************************************************************************************************************************************************************************************
+ok: [localhost]
+
+TASK [Get disk usage] *********************************************************************************************************************************************************************************************
+ok: [localhost]
+
+TASK [Get logged-in users] ****************************************************************************************************************************************************************************************
+ok: [localhost]
+
+TASK [Get top 5 processes by CPU usage] ***************************************************************************************************************************************************************************
+ok: [localhost]
+
+TASK [Display hostname] *******************************************************************************************************************************************************************************************
+ok: [localhost] => {
+    "msg": "Linux labvm 5.4.0-37-generic #41-Ubuntu SMP Wed Jun 3 18:57:02 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux"
+}
+
+TASK [Display current date and time] ******************************************************************************************************************************************************************************
+ok: [localhost] => {
+    "msg": "Sun 05 Jul 2026 10:40:38 AM UTC"
+}
+
+TASK [Display CPU information] ************************************************************************************************************************************************************************************
+ok: [localhost] => {
+    "msg": [
+        "Architecture:                    x86_64",
+        "CPU op-mode(s):                  32-bit, 64-bit",
+        "Byte Order:                      Little Endian",
+        "Address sizes:                   39 bits physical, 48 bits virtual",
+        "CPU(s):                          2",
+        "On-line CPU(s) list:             0,1",
+        "Thread(s) per core:              1",
+        "Core(s) per socket:              2",
+        "Socket(s):                       1",
+        "NUMA node(s):                    1",
+        "Vendor ID:                       GenuineIntel",
+        "CPU family:                      6",
+        "Model:                           165",
+        "Model name:                      Intel(R) Core(TM) i7-10750H CPU @ 2.60GHz",
+        "Stepping:                        2",
+        "CPU MHz:                         2592.000",
+        "BogoMIPS:                        5184.00",
+        "Hypervisor vendor:               KVM",
+        "Virtualization type:             full",
+        "L1d cache:                       64 KiB",
+        "L1i cache:                       64 KiB",
+        "L2 cache:                        512 KiB",
+        "L3 cache:                        24 MiB",
+        "NUMA node0 CPU(s):               0,1",
+        "Vulnerability Itlb multihit:     KVM: Vulnerable",
+        "Vulnerability L1tf:              Not affected",
+        "Vulnerability Mds:               Not affected",
+        "Vulnerability Meltdown:          Not affected",
+        "Vulnerability Spec store bypass: Vulnerable",
+        "Vulnerability Spectre v1:        Mitigation; usercopy/swapgs barriers and __user pointer sanitization",
+        "Vulnerability Spectre v2:        Mitigation; Full generic retpoline, STIBP disabled, RSB filling",
+        "Vulnerability Srbds:             Not affected",
+        "Vulnerability Tsx async abort:   Not affected",
+        "Flags:                           fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc cpuid tsc_known_freq pni pclmulqdq ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch invpcid_single fsgsbase bmi1 avx2 bmi2 invpcid rdseed adx clflushopt arat md_clear flush_l1d arch_capabilities"
+    ]
+}
+
+TASK [Display memory usage] ***************************************************************************************************************************************************************************************
+ok: [localhost] => {
+    "msg": [
+        "              total        used        free      shared  buff/cache   available",
+        "Mem:          3.8Gi       932Mi       1.0Gi       105Mi       1.9Gi       2.6Gi",
+        "Swap:         2.0Gi          0B       2.0Gi"
+    ]
+}
+
+TASK [Display disk usage] *****************************************************************************************************************************************************************************************
+ok: [localhost] => {
+    "msg": [
+        "Filesystem      Size  Used Avail Use% Mounted on",
+        "udev            1.9G     0  1.9G   0% /dev",
+        "tmpfs           394M  1.2M  393M   1% /run",
+        "/dev/sda5        31G   16G   14G  55% /",
+        "tmpfs           2.0G   62M  1.9G   4% /dev/shm",
+        "tmpfs           5.0M     0  5.0M   0% /run/lock",
+        "tmpfs           2.0G     0  2.0G   0% /sys/fs/cgroup",
+        "/dev/loop0      128K  128K     0 100% /snap/bare/5",
+        "/dev/loop2       55M   55M     0 100% /snap/core18/1754",
+        "/dev/loop1      187M  187M     0 100% /snap/chromium/3444",
+        "/dev/loop3       88M   88M     0 100% /snap/drawio/33",
+        "/dev/loop4      164M  164M     0 100% /snap/postman/113",
+        "/dev/loop6       48M   48M     0 100% /snap/cups/1206",
+        "/dev/loop5      395M  395M     0 100% /snap/mesa-2404/1165",
+        "/dev/loop7       67M   67M     0 100% /snap/core24/1643",
+        "/dev/loop9      607M  607M     0 100% /snap/gnome-46-2404/153",
+        "/dev/loop8      165M  165M     0 100% /snap/gnome-3-28-1804/198",
+        "/dev/loop10      63M   63M     0 100% /snap/gtk-common-themes/1506",
+        "/dev/loop12     106M  106M     0 100% /snap/core/17292",
+        "/dev/loop11     175M  175M     0 100% /snap/postman/360",
+        "/dev/loop13     106M  106M     0 100% /snap/core/17284",
+        "/dev/loop14      92M   92M     0 100% /snap/gtk-common-themes/1535",
+        "/dev/loop15     157M  157M     0 100% /snap/chromium/1193",
+        "/dev/loop16     128M  128M     0 100% /snap/drawio/255",
+        "/dev/loop17      74M   74M     0 100% /snap/core22/2411",
+        "/dev/loop18     162M  162M     0 100% /snap/gnome-3-28-1804/128",
+        "/dev/loop19      64M   64M     0 100% /snap/core20/2769",
+        "/dev/loop20     381M  381M     0 100% /snap/code/235",
+        "/dev/loop21     361M  361M     0 100% /snap/code/232",
+        "/dev/sda1       511M  4.0K  511M   1% /boot/efi",
+        "tmpfs           394M   28K  394M   1% /run/user/900",
+        "/dev/loop22      56M   56M     0 100% /snap/core18/2999"
+    ]
+}
+
+TASK [Display logged-in users] ************************************************************************************************************************************************************************************
+ok: [localhost] => {
+    "msg": [
+        "devasc   tty7         2026-07-05 09:36 (:0)"
+    ]
+}
+
+TASK [Display top 5 processes by CPU usage] ***********************************************************************************************************************************************************************
+ok: [localhost] => {
+    "msg": [
+        "USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND",
+        "devasc     12760 34.6  1.3 155976 55168 pts/0    Sl+  10:40   0:01 /usr/bin/python3 /home/devasc/.local/bin/ansible-playbook -i localhost, -c local ansible/linux/system_info.yml",
+        "devasc     12955 18.0  0.4  29972 18652 pts/0    S+   10:40   0:00 /usr/bin/python3 /home/devasc/.ansible/tmp/ansible-tmp-1783248039.6044462-12936-184000850068896/AnsiballZ_command.py",
+        "devasc     12936  5.0  1.1 156452 45500 pts/0    S+   10:40   0:00 /usr/bin/python3 /home/devasc/.local/bin/ansible-playbook -i localhost, -c local ansible/linux/system_info.yml",
+        "root        1926  1.4  3.7 754216 150952 tty7    Ssl+ 09:36   0:54 /usr/lib/xorg/Xorg -core :0 -seat seat0 -auth /var/run/lightdm/root/:0 -nolisten tcp vt7 -novtswitch",
+        "root        1730  0.5  0.8 121084 35656 ?        Sl   09:36   0:19 /opt/API-SIMULATOR/venv/bin/python api-simulator.py"
+    ]
+}
+
+PLAY RECAP ********************************************************************************************************************************************************************************************************
+localhost                  : ok=14   changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
