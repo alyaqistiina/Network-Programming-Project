@@ -32,20 +32,21 @@ Maintained by M5 (Amr Hatem) - Integration and Documentation
 - Resolution: tested inside Docker container; configure_device.yml confirmed working.
 
 ## 5. Integration Test Log (M5) - 5 Jul
+- Docker environment: built with `docker-compose up --build -d`. Both containers
+  (ansible-control, linux-target) built and running, confirmed via `docker ps`.
 - Linux system info (ansible/linux/system_info.yml):
-  PASS. Ran with `ansible-playbook -i localhost, -c local`.
-  All 14 tasks ok, failed=0. Collected hostname, date/time, CPU, memory,
-  disk, logged-in users, top 5 processes. Full output saved in
+  PASS. All 14 tasks ok, failed=0. Collected hostname, date/time, CPU, memory,
+  disk usage, logged-in users, and top 5 processes. Full output saved in
   docs/sample_output_linux.txt.
 - Network playbooks (configure_device.yml, retrieve_info.yaml):
-  NOT re-run locally. Building the Docker control node failed on this VM with
-  an OCI seccomp error on syscall clone3 (VM's Docker version does not support
-  clone3). Tried seccomp=unconfined flag, older bullseye base image, and direct
-  docker build - all blocked by the same daemon-level issue. Would need a Docker
-  upgrade on the VM to resolve.
-  Verified instead via commit history: M3 commit "Configure banner, interface
-  description and IP via NETCONF - tested successfully" confirms these ran
-  against the sandbox on the author's environment.
+  Ran retrieve_info.yaml from the ansible-control container against the DevNet
+  sandbox. Result: connection to the sandbox was refused
+  ("Connection reset by peer", sandbox IP 131.226.217.150 port 830).
+  A plain SSH test to the same host returned the same reset, so the sandbox
+  itself was unreachable at test time (public sandbox down/busy or credentials
+  expired) - the playbook code is unaffected.
+  Network configuration was previously confirmed working via M3's commit
+  "Configure banner, interface description and IP via NETCONF - tested successfully".
 
 ## 6. Issues Found During Integration
 - [OPEN] .env.example missing but README setup step 2 tells users to copy it.
@@ -54,5 +55,5 @@ Maintained by M5 (Amr Hatem) - Integration and Documentation
   use .yml. Owner: M4 (Ain) to confirm or rename for consistency.
 - [OPEN] Reflection files: only reflection_member3.md present.
   Owner: M1, M2, M4, M5 each to add their own reflection.
-- [ENV] Docker build blocked by clone3/seccomp on this VM's Docker version.
-  Not a code bug; network playbooks verified via M3's tested commit instead.
+- [OPEN] DevNet sandbox refused connections during testing; re-check sandbox
+  status and refresh credentials before the final demo.
