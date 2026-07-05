@@ -15,7 +15,6 @@ Audited by M5 (Amr) on 5 Jul. Tracks README completeness before 6 July submissio
 - [ ] Sample Output section: paste real playbook output [M5 collects during testing]
 - [ ] Screenshots of successful playbook runs [each playbook owner: M2/M3/M4]
 - [ ] .env.example file is MISSING but referenced in setup step 2 [M1 Tina to add]
-- [ ] Reflection files: only member3 present; member1,2,4,5 still needed [each member]
 
 ## Known issue
 - retrieve_info playbook saved as retrieve_info.yaml (others use .yml) [flagged to M4]
