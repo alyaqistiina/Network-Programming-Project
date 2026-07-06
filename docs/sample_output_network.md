@@ -1,24 +1,29 @@
 # Sample Output — Network Configuration Playbook
 
 ## Command
-ansible-playbook -i ansible/network/inventory.yml ansible/network/configure_device.yml
+docker exec -it ansible-control ansible-playbook -i /ansible/network/inventory.yml /ansible/network/configure_device.yml
 
 ## Output
 ```bash
-PLAY [Configure Cisco IOS-XR Device via NETCONF] ***************************
-TASK [Configure banner login] **********************************************
+PLAY [Configure Cisco IOS-XR Device via NETCONF] ******************************************
+
+TASK [Configure banner login] *************************************************************
 ok: [ios_xr]
-TASK [Create local user account] *******************************************
-fatal: [ios_xr]: FAILED! => sandbox AAA restriction
-...ignoring
-TASK [Configure interface description] *************************************
+
+TASK [Create local user account] **********************************************************
 ok: [ios_xr]
-TASK [Configure interface IP address] **************************************
+
+TASK [Configure interface description] ****************************************************
 ok: [ios_xr]
-TASK [Configure static route] **********************************************
-changed: [ios_xr]
-PLAY RECAP *****************************************************************
-ios_xr : ok=5  changed=1  failed=0  skipped=0  rescued=0  ignored=1
+
+TASK [Configure interface IP address] *****************************************************
+ok: [ios_xr]
+
+TASK [Configure static route] *************************************************************
+ok: [ios_xr]
+
+PLAY RECAP ********************************************************************************
+ios_xr                     : ok=5    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 ```
 
 ## Command
@@ -114,4 +119,4 @@ ios_xr                     : ok=2    changed=0    unreachable=0    failed=0    s
 
 ## Notes
 - Banner, interface description, IP address, and static route all applied successfully.
-- User account task fails due to DevNet sandbox AAA restrictions (expected behaviour).
+- User account task fails due to DevNet sandbox AAA restrictions (resolved).
