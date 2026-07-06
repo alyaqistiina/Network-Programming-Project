@@ -4,6 +4,7 @@
 ansible-playbook -i ansible/network/inventory.yml ansible/network/configure_device.yml
 
 ## Output
+```bash
 PLAY [Configure Cisco IOS-XR Device via NETCONF] ***************************
 TASK [Configure banner login] **********************************************
 ok: [ios_xr]
@@ -18,13 +19,13 @@ TASK [Configure static route] **********************************************
 changed: [ios_xr]
 PLAY RECAP *****************************************************************
 ios_xr : ok=5  changed=1  failed=0  skipped=0  rescued=0  ignored=1
-
-# Sample Output - Network Device Retrieval Output
+```
 
 ## Command
 docker exec -it ansible-control ansible-playbook -i /ansible/network/inventory.yml /ansible/network/retrieve_info.yml
 
 ## Output
+```bash
 PLAY [Retrieve Cisco IOS-XR Device Info via NETCONF] **************************************
 
 TASK [Pull device running interface configurations] ***************************************
@@ -109,6 +110,7 @@ ok: [ios_xr] => {
 
 PLAY RECAP ********************************************************************************
 ios_xr                     : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+```
 
 ## Notes
 - Banner, interface description, IP address, and static route all applied successfully.
